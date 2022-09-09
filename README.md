@@ -1,0 +1,6 @@
+
+# GOA POLICE HACKATHON
+
+DATE-TIME FORMAT : dd/mm/yyyy hh:mm:ss
+
+POSTMAN ENDPOINTS : 
