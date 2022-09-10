@@ -35,7 +35,7 @@ Me along with [Akash Sanjeev](https://www.linkedin.com/in/akash-sanjeev-37436a1b
 
 - `Ruthveek Desai` -  Android Developer (Frontend) *Java* - [LinkedIn](https://www.linkedin.com/in/ruthveekdessai/), [GitHub](https://github.com/DessaiRuthveek)
 
-- `Aniket Mandrekar` - Facial Recognision and Data Scraping (Backend) *Python* - [LinkedIn](https://www.linkedin.com/in/ruthveekdessai/)
+- `Aniket Mandrekar` - Facial Recognision and Data Scraping (Backend) *Python* - [LinkedIn](https://www.linkedin.com/in/aniket-mandrekar-779880233/)
 
 
 ### 📃 Problem Statement
