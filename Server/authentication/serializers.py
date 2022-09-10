@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import *
 
 
+class PoliceProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PoliceModel
+        exclude = ["created_at", "updated_at", "email"]
+
+
 class loginSerializer(serializers.Serializer):
     email = serializers.EmailField(required = True)
     password = serializers.CharField(required = True)

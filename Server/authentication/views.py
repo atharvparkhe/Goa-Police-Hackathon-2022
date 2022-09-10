@@ -1,3 +1,4 @@
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -28,11 +29,11 @@ def addPoliceOfficers(request):
             sheet = workbook.sheet_by_index(0)
             for row in range(1,sheet.nrows):
                 org = PoliceModel.objects.create(
-                        f_name = str(sheet.cell_value(row,0)).capitalize(),
-                        l_name = str(sheet.cell_value(row,1)).capitalize(),
-                        email = str(sheet.cell_value(row,2)).lower(),
-                        phone = sheet.cell_value(row,3),
-                        rank = sheet.cell_value(row,4)
+                    f_name = str(sheet.cell_value(row,0)).capitalize(),
+                    l_name = str(sheet.cell_value(row,1)).capitalize(),
+                    email = str(sheet.cell_value(row,2)).lower(),
+                    phone = sheet.cell_value(row,3),
+                    rank = sheet.cell_value(row,4)
                     )
                 pw = get_random_string(8)
                 org.set_password(pw)
@@ -57,15 +58,16 @@ def addPoliceAdminOfficers(request):
             workbook = xlrd.open_workbook(path)
             sheet = workbook.sheet_by_index(0)
             for row in range(1,sheet.nrows):
-                org = PoliceModel.objects.create(
-                        name = str(sheet.cell_value(row,0)),
-                        email = str(sheet.cell_value(row,1)).lower(),
-                        phone = sheet.cell_value(row,2),
-                        rank = sheet.cell_value(row,3)
+                org = PoliceHeadModel.objects.create(
+                    f_name = str(sheet.cell_value(row,0)).capitalize(),
+                    l_name = str(sheet.cell_value(row,1)).capitalize(),
+                    email = str(sheet.cell_value(row,2)).lower(),
+                    phone = sheet.cell_value(row,3),
+                    rank = sheet.cell_value(row,4)
                     )
                 pw = get_random_string(8)
                 org.set_password(pw)
-                thread_obj = send_police_mail(str(sheet.cell_value(row,1)).lower(), pw)
+                thread_obj = send_police_mail(str(sheet.cell_value(row,2)).lower(), pw)
                 thread_obj.start()
                 org.save()
             return Response({"message":"Police Admin Officers Added"}, status=status.HTTP_201_CREATED)
@@ -130,6 +132,14 @@ def forgot(request):
         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+class EditOfficerProfile(RetrieveUpdateDestroyAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdminUser]
+    queryset = PoliceModel.objects.all()
+    serializer_class = PoliceProfileSerializer
+    lookup_field = "id"
+
+
 @api_view(["POST"])
 def reset(request):
     try:
@@ -157,11 +167,13 @@ def specialEmail(request):
         authentication_classes = [JWTAuthentication]
         permission_classes = [IsAdminUser]
         email_recieptants = list(PoliceModel.objects.all().values_list("email", flat=True))
+        if not email_recieptants:
+            return Response({"message":"No Email Reciepttants"}, status=status.HTTP_403_FORBIDDEN)
         ser = SpecialEmailSerializer(data=request.data)
         if ser.is_valid():
             thread_obj = send_special_email(ser.data["sub"], ser.data["body"], email_recieptants)
             thread_obj.start()
-            return Response({"message":"Email Sent"})
+            return Response({"message":"Email Sent"}, status=status.HTTP_200_OK)
         return Response({"error":ser.errors}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

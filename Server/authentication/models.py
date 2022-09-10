@@ -10,6 +10,9 @@ class PoliceModel(BaseUser):
 class PoliceHeadModel(BaseUser):
     rank = models.CharField(max_length=10)
     profile_img = models.ImageField(upload_to="police_admin_profile", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    def save(self, *args, **kwargs):
+        self.is_staff = True
+        super(PoliceHeadModel, self).save(*args, **kwargs)
 
 
 class AddPoliceModel(BaseModel):
