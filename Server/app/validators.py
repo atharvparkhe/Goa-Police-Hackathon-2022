@@ -41,7 +41,7 @@ def validate_file_size(value):
 
 def validate_severity(value):
     try:
-        return round(float(value), 2)
+        return round(float(value), 10)
     except:
         raise ValidationError(
             _('%(value)s is not an integer or a float  number'),
@@ -52,7 +52,17 @@ def validate_severity(value):
 
 def validate_height(value):
     try:
-        return round(float(value), 2)
+        return round(float(value), 8)
+    except:
+        raise ValidationError(
+            _('%(value)s is not an integer or a float  number'),
+            params={'value': value},
+        )
+
+
+def validate_alcoholic(value):
+    try:
+        return round(float(value), 5)
     except:
         raise ValidationError(
             _('%(value)s is not an integer or a float  number'),

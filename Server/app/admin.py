@@ -8,9 +8,8 @@ class CaseImagesModelAdmin(admin.StackedInline):
     model = CaseImagesModel
 
 class CaseModelAdmin(admin.ModelAdmin):
-    # list_display = ["name", "price", "duration", "location"]
     inlines = [CaseImagesModelAdmin]
     class Meta:
-        model = GeneralCaseModel
+        model = CaseModel
 
-admin.site.register(GeneralCaseModel, CaseModelAdmin)
+admin.site.register(CaseModel, CaseModelAdmin)
