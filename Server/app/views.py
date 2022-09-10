@@ -1,11 +1,9 @@
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, RetrieveDestroyAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-
-from authentication.models import PoliceModel
 from .serializers import *
 from .models import *
 
@@ -28,3 +26,17 @@ class CategoriesRUD(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
 
+@api_view(["POST"])
+def dashboardView(request):
+    try:
+        pass
+    except Exception as e:
+            return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(["POST"])
+def analyticsView(request):
+    try:
+        pass
+    except Exception as e:
+            return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
