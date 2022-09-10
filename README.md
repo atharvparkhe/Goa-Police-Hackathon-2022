@@ -70,7 +70,7 @@ Me along with [Akash Sanjeev](https://www.linkedin.com/in/akash-sanjeev-37436a1b
 
 ### 🛠 API Reference
 
-**Postman Endpoints** : https://www.getpostman.com/collections/66bf66e50ebe0f8f60c3
+**Postman Endpoints** : https://www.getpostman.com/collections/62195bba49fa9ccd6312
 
 ![Endpoints](docs/endpoints-customer.png)
 ![Endpoints](docs/endpoints-seller.png)
