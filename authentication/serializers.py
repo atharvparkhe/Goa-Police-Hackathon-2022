@@ -35,6 +35,10 @@ class AddPoliceAdminSerializer(serializers.ModelSerializer):
         model = AddPoliceAdminModel
         fields = ["file"]
 
+class AddIndividualPoliceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PoliceModel
+        fields = ["f_name", "l_name", "rank", "phone", "email", "profile_img"]
 
 class SpecialEmailSerializer(serializers.Serializer):
     sub = serializers.CharField(required = True)

@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'base',
     'authentication',
-    # 'app',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -134,10 +134,22 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'us2.smtp.mailhostbox.com'
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
-EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = "sarveshpatkartech@gmail.com"
+# EMAIL_HOST_PASSWORD = "password 12345678"
+# EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+
+api_key = "195aba7789e3ed2cf999882c7dbdd21b-07a637b8-54d365cd"
+api_base_url = "https://api.mailgun.net/v3/sandbox51e80ef2e426406da19771278037f010.mailgun.org"
+
+
+# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+# MAILGUN_ACCESS_KEY = 'ACCESS-KEY'
+# MAILGUN_SERVER_NAME = 'YOUR-DOMAIN-NAME'
+# EMAIL_PORT = 587

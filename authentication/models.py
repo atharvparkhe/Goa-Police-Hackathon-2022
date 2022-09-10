@@ -9,7 +9,7 @@ class PoliceModel(BaseUser):
 
 class PoliceHeadModel(BaseUser):
     rank = models.CharField(max_length=10)
-    profile_img = models.ImageField(upload_to="police_head_profile", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    profile_img = models.ImageField(upload_to="police_admin_profile", height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
 
 class AddPoliceModel(BaseModel):

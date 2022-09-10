@@ -2,6 +2,29 @@ import threading, random
 from django.conf import settings
 from django.core.mail import send_mail
 from django.core.cache import cache
+import requests
+
+# from django.core.mail import EmailMultiAlternatives
+
+# subject = "Hello, its me"
+# text_content = "I was wondering if after all these years"
+# sender = "from@localhost.com"
+# recipient = "to@localhost.com"
+# msg = EmailMultiAlternatives(subject, text_content, sender, [recipient])
+# msg.send()
+
+
+# def send_simple_message():
+# 	return requests.post(
+# 		api_base_url,
+# 		auth=("api", api_key),
+# 		data={
+#             "from": "patharv777@gmail.com",
+# 			"to": ["patharv777@gmail.com"],
+# 			"subject": "Hello",
+# 			"text": "Testing some Mailgun awesomness!"
+#             }
+#         )
 
 
 class send_forgot_otp(threading.Thread):
@@ -32,6 +55,7 @@ class send_police_mail(threading.Thread):
             email_from = settings.EMAIL_HOST_USER
             print("Email ID : " + self.email +  "  Password : " + self.pw)
             send_mail(subject , message ,email_from ,[self.email])
+            print("Email sent !!")
         except Exception as e:
             print(e)
 
