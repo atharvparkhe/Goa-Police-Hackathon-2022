@@ -1,7 +1,10 @@
 from datetime import date
 from django.db import models
 from base.models import BaseModel
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 from .validators import *
+from .utils import *
 
 GENDER = (("MALE", "MALE"), ("FEMALE", "FEMALE"), ("OTHERS", "OTHERS"))
 
@@ -22,16 +25,17 @@ class CategoryModel(BaseModel):
 
 class CaseModel(BaseModel):
     title = models.CharField(max_length=50)
-    category = models.OneToOneField(CategoryModel, on_delete=models.CASCADE, default="4b408337-35d4-480f-9a82-6cfe4011b36d")
+    category = models.OneToOneField(CategoryModel, on_delete=models.CASCADE)
     severity = models.FloatField(default=0, validators=[validate_severity])
     description = models.TextField(null=True, blank=True)
     additional_info = models.TextField(null=True, blank=True)
+    img = models.ImageField(upload_to="case_img", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     media = models.FileField(upload_to="case_media", max_length=100, null=True, blank=True)
     latittude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
-    who_is_abused = models.CharField(choices=PERSON_SELECTOR, max_length=50)
-    abuse_type = models.CharField(choices=ABUSE_TYPE, max_length=50)
+    who_is_abused = models.CharField(null=True, blank=True, choices=PERSON_SELECTOR, max_length=50)
+    abuse_type = models.CharField(null=True, blank=True, choices=ABUSE_TYPE, max_length=50)
     injurured = models.BooleanField(default=False)
     injururies = models.TextField(null=True, blank=True)
     drugs = models.BooleanField(default=False)
@@ -43,27 +47,29 @@ class CaseModel(BaseModel):
     weapons_used = models.TextField(null=True, blank=True)
     others_property_damaged = models.BooleanField(default=False)
     perposefuly_damaged = models.BooleanField(default=False)
-    victim = models.CharField(choices=VICTIM, max_length=50)
+    victim = models.CharField(null=True, blank=True, choices=VICTIM, max_length=50)
     def __str__(self):
         return self.title
 
 
 class PersonModel(BaseModel):
     name = models.CharField(max_length=50, blank=True)
+    id_number = models.CharField(null=True, blank=True, max_length=20)
     id_card = models.ImageField(upload_to="id_card", height_field=None, width_field=None, max_length=None, null=True, blank=True)
-    dob = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    dob = models.CharField( max_length=20, null=True, blank=True)
     gender = models.CharField(choices=GENDER, max_length=50, null=True, blank=True)
+    img = models.ImageField(upload_to="user_img", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     height = models.FloatField(null=True, blank=True, validators=[validate_severity])
     case = models.ForeignKey(CaseModel, related_name="case_suspects", on_delete=models.CASCADE)
-    def get_age(self):
-        try:
-            today = date.today()
-            age = today.year - self.dob.year
-            return age
-        except Exception as e:
-            print(e)
-    def __str__(self):
-        return self.name
+    # def get_age(self):
+    #     try:
+    #         today = date.today()
+    #         age = today.year - self.dob.year
+    #         return age
+    #     except Exception as e:
+    #         print(e)
+    # def __str__(self):
+    #     return self.name
     
 
 class CaseImagesModel(BaseModel):
@@ -71,3 +77,23 @@ class CaseImagesModel(BaseModel):
     img = models.ImageField(upload_to="case_img", height_field=None, width_field=None, max_length=None)
     def __str__(self):
         return self.case.title
+
+
+@receiver(post_save, sender=PersonModel)
+def img_to_text(sender, instance, *args, **kwargs):
+    try:
+        if instance.id_card :
+            path_of_img = "data/" + str(instance.id_card)
+            x = getDataFromIDcard(path_of_img)
+            if len(x) == 4:
+                instance.name = x[0]
+                instance.id_number = x[2]
+                instance.dob = x[1]
+                instance.gender = x[3]
+            elif len(x) == 3:
+                instance.name = x[0]
+                instance.id_number = x[2]
+                instance.dob = x[1]
+            instance.save()
+    except Exception as e:
+        print(e)

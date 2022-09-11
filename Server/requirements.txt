@@ -6,8 +6,12 @@ django-cors-headers==3.13.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.2.0
 idna==3.3
+numpy==1.23.3
+packaging==21.3
 Pillow==9.2.0
 PyJWT==2.4.0
+pyparsing==3.0.9
+pytesseract==0.3.10
 python-decouple==3.6
 pytz==2022.2.1
 requests==2.28.1

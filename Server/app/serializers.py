@@ -1,5 +1,7 @@
+from statistics import mode
 from rest_framework import serializers
 from .models import *
+
 
 class CategoryModelSerialzer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +14,8 @@ class CaseModelSerializer(serializers.ModelSerializer):
         model = CaseModel
         fields = "__all__"
 
+
+class PersonModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PersonModel
+        fields = "__all__"

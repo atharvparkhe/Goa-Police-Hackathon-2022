@@ -8,10 +8,11 @@ urlpatterns = [
 	path('add-categories/', views.AddCategories.as_view(), name="add-categories"),
 	path('edit-delete-categories/<id>/', views.CategoriesRUD.as_view(), name="edit-delete-categories"),
 
-	# path('search-cases/', views.searchCases, name="search-cases"),
-
-	path('other-cases/', views.CasesLC.as_view(), name="other-cases"),
-
-	# path('admin-dashboard/', views.dashboard, name="admin-dashboard"),
+	path('register-case/', views.AddCases.as_view(), name="register-cases"),
+	path('register-person/', views.AddPerson.as_view(), name="register-person"),
+	
+	path('rescent-case/', views.RescentCases.as_view(), name="rescent-cases"),
+	
+	path('search-case/', views.searchCases, name="search-cases"),
 
 ]

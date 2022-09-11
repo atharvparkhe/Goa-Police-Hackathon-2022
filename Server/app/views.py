@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -26,22 +26,47 @@ class CategoriesRUD(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
 
-@api_view(["POST"])
-def dashboardView(request):
-    try:
-        pass
-    except Exception as e:
-            return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+# @api_view(["POST"])
+# def dashboardView(request):
+#     try:
+#         pass
+#     except Exception as e:
+#         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@api_view(["POST"])
-def analyticsView(request):
-    try:
-        pass
-    except Exception as e:
-            return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+# @api_view(["POST"])
+# def analyticsView(request):
+#     try:
+#         pass
+#     except Exception as e:
+#         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-class CasesLC(ListCreateAPIView):
+class AddCases(CreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = CaseModel.objects.all()
     serializer_class = CaseModelSerializer
+
+class AddPerson(CreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = PersonModel.objects.all()
+    serializer_class = PersonModelSerializer
+
+
+class RescentCases(ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = CaseModel.objects.all().order_by("-created_at")
+    serializer_class = CaseModelSerializer
+
+
+@api_view(["POST"])
+def searchCases(request):
+    try:
+        pass
+    except Exception as e:
+        return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
