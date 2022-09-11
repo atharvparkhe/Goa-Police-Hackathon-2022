@@ -1,9 +1,8 @@
 from django.db import models
 from base.models import BaseModel
-from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
 from .validators import *
 from .utils import *
+
 
 GENDER = (("MALE", "MALE"), ("FEMALE", "FEMALE"), ("OTHERS", "OTHERS"))
 
@@ -60,23 +59,6 @@ class PersonModel(BaseModel):
     img = models.ImageField(upload_to="user_img", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     height = models.FloatField(null=True, blank=True, validators=[validate_severity])
     case = models.ForeignKey(CaseModel, related_name="case_suspects", on_delete=models.CASCADE)
-    def save(self, *args, **kwargs):
-        if self.id_card:
-            path_of_img = "data/id_card/" + str(self.id_card)
-            x = getDetails(path_of_img)
-            y = getNo(path_of_img)
-            if len(x) == 3:
-                self.name = x[0]
-                self.id_number = y
-                self.dob = x[1]
-                self.gender = x[2]
-            elif len(x) == 2:
-                self.name = x[0]
-                self.id_number = y
-                self.dob = x[1]
-            # self.id_card = path_of_img
-        super(PersonModel, self).save(*args, **kwargs)
-    
     # def get_age(self):
     #     try:
     #         today = date.today()
@@ -93,24 +75,3 @@ class CaseImagesModel(BaseModel):
     img = models.ImageField(upload_to="case_img", height_field=None, width_field=None, max_length=None)
     def __str__(self):
         return self.case.title
-
-
-# @receiver(pre_save, sender=PersonModel)
-# def img_to_text(sender, instance, *args, **kwargs):
-#     try:
-#         if instance.id_card :
-#             path_of_img = "data/id_card/" + str(instance.id_card)
-#             x = getDetails(path_of_img)
-#             y = getNo(path_of_img)
-#             if len(x) == 4:
-#                 instance.name = x[0]
-#                 instance.id_number = y
-#                 instance.dob = x[1]
-#                 instance.gender = x[2]
-#             elif len(x) == 3:
-#                 instance.name = x[0]
-#                 instance.id_number = y
-#                 instance.dob = x[1]
-#         # instance.save()
-#     except Exception as e:
-#         print(e)

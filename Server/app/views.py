@@ -53,6 +53,30 @@ class AddPerson(CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = PersonModel.objects.all()
     serializer_class = PersonModelSerializer
+    def create(self, request):
+        try:
+            ser = PersonModelSerializer(data=request.data)
+            if ser.is_valid():
+                ser.save()
+                obj = PersonModel.objects.get(id=ser.data["id"])
+                path_of_img = "data/" + str(obj.id_card)
+                im = Image.open(path_of_img)
+                x = getDetails(im)
+                if len(x) == 4:
+                    obj.name = x[0]
+                    obj.id_number = x[2]
+                    obj.dob = x[1]
+                    obj.gender = x[3]
+                elif len(x) == 3:
+                    obj.name = x[0]
+                    obj.id_number = x[1]
+                    obj.dob = x[2]
+                obj.save()
+                return Response({"message":"Person Added", "data":ser.data}, status=status.HTTP_200_OK)
+            return Response({"error":str(ser.errors)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
 
 
 class RescentCases(ListAPIView):
@@ -65,7 +89,13 @@ class RescentCases(ListAPIView):
 @api_view(["POST"])
 def searchCases(request):
     try:
-        pass
+        ser = SearchSerializer(data=request.data)
+        if ser.is_valid():
+            print(ser.data)
+            # ret_ser = PersonModelSerializer(obj)
+            return Response({"message":"Match Found"}, status=status.HTTP_200_OK)
+            # return Response({"message":"Match Not Found"}, status=)
+        return Response({"error":str(ser.errors)}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

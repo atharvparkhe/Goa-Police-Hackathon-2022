@@ -19,3 +19,9 @@ class PersonModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonModel
         fields = "__all__"
+
+class SearchSerializer(serializers.Serializer):
+    text = serializers.CharField(required = False)
+    img = serializers.ImageField(required = False)
+    longitude = serializers.FloatField(required = False)
+    latitude = serializers.FloatField(required = False)
