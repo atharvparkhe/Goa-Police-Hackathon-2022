@@ -27,7 +27,7 @@ class CaseModel(BaseModel):
     media = models.FileField(upload_to="case_media", max_length=100, null=True, blank=True)
     gender = models.CharField(choices=GENDER, max_length=50, null=True, blank=True)
     height = models.FloatField(null=True, blank=True, validators=[validate_severity])
-    category = models.ForeignKey(CategoryModel, related_name="related_category_cases", on_delete=models.CASCADE)
+    category = models.OneToOneField(CategoryModel, on_delete=models.CASCADE, default="1a95a597-1cb8-42c1-a18c-41d6ef84975b")
     latittude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
@@ -42,6 +42,8 @@ class CaseModel(BaseModel):
             print(e)
     def __str__(self):
         return self.title
+    class Meta:
+        abstract = True
 
 
 class OthersCaseModel(CaseModel):
@@ -77,3 +79,5 @@ class CaseImagesModel(BaseModel):
     img = models.ImageField(upload_to="case_img", height_field=None, width_field=None, max_length=None)
     def __str__(self):
         return self.case.title
+    class Meta:
+        abstract = True
