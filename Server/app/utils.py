@@ -3,6 +3,7 @@ from deepface import DeepFace
 from PIL import Image
 import pytesseract
 import uuid
+# from core.settings import BASE_DIR
 
 
 def getDetails(im):
@@ -45,3 +46,23 @@ def match_face(img_path):
         return val[0][0]
     except Exception as e:
         return False
+
+
+def ShowHeatMap():
+    coords = [15.2993, 74.01]
+    m=folium.Map(location=coords,zoom_start=9.6)
+    df=pd.read_csv(BASE_DIR + 'data.csv') 
+    HeatMap(data=df[['lat','long']],radius=10).add_to(m)
+    m.save(BASE_DIR + "templates/map.html")
+    # webbrowser.open("map.html")
+
+
+def SearchCrime(Crmtype):
+    coords = [15.2993, 74.01]
+    m=folium.Map(location=coords,zoom_start=9.6)
+    df=pd.read_csv(BASE_DIR + 'data.csv')
+    for i in range(len(df)):
+        if df['offense'][i]==Crmtype:
+            Marker([df['lat'][i],df['long'][i]]).add_to(m)
+    m.save(BASE_DIR + "templates/map.html")
+    # webbrowser.open("map.html")

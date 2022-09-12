@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import *
 from .models import *
-
+from core.settings import BASE_DIR
 
 class GetCategories(ListAPIView):
     queryset = CategoryModel.objects.all()
@@ -91,10 +91,32 @@ def searchCases(request):
     try:
         ser = SearchSerializer(data=request.data)
         if ser.is_valid():
-            print(ser.data)
-            # ret_ser = PersonModelSerializer(obj)
-            return Response({"message":"Match Found"}, status=status.HTTP_200_OK)
-            # return Response({"message":"Match Not Found"}, status=)
+            ser.save()
+            if ser.data["img"] != NULL:
+                img_path = str(BASE_DIR) + "/data/" + ser.data["img"]
+                res = match_face(img_path)
+                if res == False:
+                    return  Response({"message":"Match Not Found"}, status=status.HTTP_404_NOT_FOUND)
+                else :
+                    res_img_path = str(BASE_DIR) + "/data/" + res
+                    if not PersonModel.objects.filter(img=res_img_path):
+                        return  Response({"message":"Match Not Found"}, status=status.HTTP_404_NOT_FOUND)
+                    else:
+                        obj = PersonModel.objects.get(img=res_img_path)
+                        ret_ser = PersonModelSerializer(obj)
+                        return Response({"message":"Match Found", "data":ret_ser.data}, status=status.HTTP_200_OK)
+            if ser.data["text"] != None:
+                search_string = ser.data["text"]
+                if CaseModel.objects.filter(title__icontains=search_string, description__icontains=search_string, additional_info__icontains=search_string).exists():
+                    objs = CaseModel.objects.filter(title__icontains=search_string, description__icontains=search_string, additional_info__icontains=search_string)
+                    res_ser = CaseModelSerializer(objs, many=True)
+                    return Response({"message":"Data Found", "data":res_ser.data}, status=status.HTTP_200_OK)
+                else:
+                    return Response({"message":"Data not found"}, status=status.HTTP_404_NOT_FOUND)
+            if ser.data["longitude"] != None and ser.data["latitude"] != None:
+                lat = ser.data["longitude"]
+                lon = ser.data["latitude"]
+                return Response({"message":"Data Found", "data":res_ser.data}, status=status.HTTP_200_OK)
         return Response({"error":str(ser.errors)}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
