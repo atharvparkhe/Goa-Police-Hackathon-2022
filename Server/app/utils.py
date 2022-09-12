@@ -1,5 +1,5 @@
 from core.settings import BASE_DIR
-from deepface import DeepFace
+# from deepface import DeepFace
 from PIL import Image
 import pytesseract
 import uuid
@@ -39,13 +39,13 @@ def getDetails(im):
 
 db_path = str(BASE_DIR) + "/data/user_img"
 
-def match_face(img_path):
-    try:
-        df = DeepFace.find(img_path=img_path, db_path=db_path)
-        val = df.values.tolist()
-        return val[0][0]
-    except Exception as e:
-        return False
+# def match_face(img_path):
+#     try:
+#         df = DeepFace.find(img_path=img_path, db_path=db_path)
+#         val = df.values.tolist()
+#         return val[0][0]
+#     except Exception as e:
+#         return False
 
 
 def ShowHeatMap():
