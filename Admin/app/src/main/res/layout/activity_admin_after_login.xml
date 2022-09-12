@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backer"
+    tools:context=".Admin_afterLogin">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="426dp"
+        android:layout_height="67dp"
+        android:text="Administrator"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="281dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="108dp"
+        android:text="Search"
+        android:textSize="48sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="277dp"
+        android:layout_height="207dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="68dp"
+        android:text="HotSpot"
+        android:textSize="45sp"
+        app:cornerRadius="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_otp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button10"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="277dp"
+        android:layout_height="207dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginBottom="64dp"
+        android:text="New User"
+        android:textSize="48sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_verify"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button11"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="277dp"
+        android:layout_height="207dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="276dp"
+        android:text="Add"
+        android:textSize="48sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_otp"
+        android:layout_width="277dp"
+        android:layout_height="207dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="228dp"
+        android:text="Recents"
+        android:textSize="48sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_verify" />
+
+    <Button
+        android:id="@+id/btn_verify"
+        android:layout_width="277dp"
+        android:layout_height="207dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="228dp"
+        android:text="Notice"
+        android:textSize="48sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

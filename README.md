@@ -1,12 +1,24 @@
 
-## Non-Cognisible Offense Records System
+## Drishti App
 
-<!-- The basic aim for implementing Restaurant Seat Reservation system is to eliminate the waiting time for the customers at restaurant for waiting for their turn for the service. This system would allow customers to view different restaurants listed on the application, and view the food offered; also reserve seats at any date and time according to their convenience and also pay in advance for the service they which they opted for. The Restaurant owners also get an interface to update the seats reservations and their services, also auto-generate invoice for the customers.
-Customer authentication is done using *JWT (JSON Web Token)*. Database used is *SQLite3* which is django's default database. Payment Gateway used is *Razorpay*. -->
+#### Non-Cognisible Offense Records System
+
+#### An explanation of the problem statement
+- We have identified in our societies that most of the people that go on to become greater miscreants start out young and often perform repeated crimes maybe on small scales
+- These people are often known to the local police but due to small degree crimes they are often let go with warnings left with no paper trail to trace and keep track of their activity.
+- If we manage to maintain a record of these people with the local police it will be as though that we have eyes on them all the while and record their activities and access their details in potential cases
+
+#### Proposed solution to the problem statement
+
+- App based solution such that whenever any person is brought into the police station for whatever reason like a fist fight, verbal abuse, potential theft suspision, rash driving etc.
+- Police official shall record and store it on the data base local to area of activity of that person along with his/her details. -Even if there is no conclusion to the case or if there is common scenario of "compromise" in the parties the details wll be still be stored for future reference.
+How will this help?
+- It will create fear among youngsers of getting tagged in the society
+- It will help carve an identity/personality of that person repeatedly brought in and it will serve as a rich storehouse to look into if a similar case is registered in an area with unidentified suspects
 
 ### 🔗 Content
 
-- [Overview](#non-cognisible-offense-records-system)
+- [Overview](#drishti-app)
 - [Content](#-content)
 - [Event Overview](#-event-overview)
 - [Team](#-team)
@@ -23,8 +35,8 @@ Customer authentication is done using *JWT (JSON Web Token)*. Database used is *
 
 ### 🧬 Event Overview
 
-<!-- Me and my team participated in our first ever Hackathon event at [Inspirus](https://www.linkedin.com/feed/hashtag/?keywords=inspirus2k21) in October 2021 at [Don Bosko College of Engineering, Goa](https://www.linkedin.com/school/don-bosco-college-of-engineering-fatorda-goa/). 
-Me along with [Akash Sanjeev](https://www.linkedin.com/in/akash-sanjeev-37436a1b5/) and [Sachin Padwalkar](https://www.linkedin.com/in/sachin-padwalkar-a265291ba/) had participated as a team, where I was working on [Django application](https://github.com/atharvparkhe/restaurant-seat-booking) (Backend), Saching was handling [React application](https://github.com/Sachin9822/restu) (Frontend) for the Administration Section and Akash was handling [Androind application](https://github.com/AkashCSanjeev/Be-Seated) (Frontend). -->
+Me and my team participated in our first ever 48hrs Hackathon event at [Goa Police Hackathon](https://www.linkedin.com/feed/hashtag/?keywords=inspirus2k21) in September 2022 at [Goa College of Engineering, Goa](https://www.linkedin.com/school/don-bosco-college-of-engineering-fatorda-goa/). 
+Me along with [Ruthveek Desai](https://www.linkedin.com/in/DessaiRuthveek/), [Aniket Mandrekar](https://www.linkedin.com/in/aniket-mandrekar-779880233/) and [Sachin Padwalkar](https://www.linkedin.com/in/sachin-padwalkar-a265291ba/) had participated as a team, where I was working on [Django application](https://github.com/atharvparkhe/Goa-Police-Hackathon-2022/server/) (Backend), Sachin was handling [React application](https://github.com/Sachin9822/restu) (Frontend) for the Administration Section and Akash was handling [Androind application](https://github.com/AkashCSanjeev/Be-Seated) (Frontend).
 
 
 ### 👨‍👦‍👦 Team
@@ -61,19 +73,19 @@ Me along with [Akash Sanjeev](https://www.linkedin.com/in/akash-sanjeev-37436a1b
 
 - **`BACKEND`** : Django *(Python)*
 
-- **`DATABASE`** : SQLite3
+- **`DATABASE`** : MySQL
 
 - **`FRONTEND`** : 
-    - **Admin Panel :** React JS *(Javascript)*
-    - **Customer Application :** Android *(Java)*
+    - **Admin Panel :** Android App *(Java)*
+    - **Poice Application :** Android App *(Java)*
 
 
 ### 🛠 API Reference
 
 **Postman Endpoints** : https://www.getpostman.com/collections/62195bba49fa9ccd6312
 
-![Endpoints](docs/endpoints-customer.png)
-![Endpoints](docs/endpoints-seller.png)
+![Endpoints](docs/admin-endpoints.png)
+![Endpoints](docs/police-endpoints.png)
 
 **API Endpoints JSON file** (for importing into thunderclient / postman) is available in the docs folder or click [here](docs/endpoints.json)
 

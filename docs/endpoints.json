@@ -1,0 +1,727 @@
+{
+	"info": {
+		"_postman_id": "21753c64-8a74-44f7-928a-9309e57152e9",
+		"name": "Goa Police Hackathon 2k22 - Non Cognessive Offense Register",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16397653"
+	},
+	"item": [
+		{
+			"name": "Admins - Police Head",
+			"item": [
+				{
+					"name": "Account",
+					"item": [
+						{
+							"name": "Police Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"patharv777@gmail.com\",\n    \"password\":\"opxtkjyl\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/police-head-login/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"police-head-login",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Police Admin Forget",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"patharv777@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/police-head-forgot/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"police-head-forgot",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Police Admin Reset",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\":516800,\n    \"pw\":321,\n    \"cpw\":321\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/police-head-reset/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"police-head-reset",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Officers",
+					"item": [
+						{
+							"name": "Add Police Officers",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/atharvparkhe/Downloads/test1.xls"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/add-police/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"add-police",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Individual Police Officer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile_img",
+											"type": "file",
+											"src": "/Users/atharvparkhe/Downloads/123.jpeg"
+										},
+										{
+											"key": "f_name",
+											"value": "Aniket",
+											"type": "text"
+										},
+										{
+											"key": "l_name",
+											"value": "Mandrekar",
+											"type": "text"
+										},
+										{
+											"key": "rank",
+											"value": "Rank 2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "aniket@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "987654321",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/add-individual-police/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"add-individual-police",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Officer Credentails",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Add Categories",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMDA1Njk1LCJpYXQiOjE2NjI4MzI4OTUsImp0aSI6IjUyY2VlMjc2OThlOTQ5ZTdiMDYyNTQ4NGQ0NWY0MWEwIiwidXNlcl9pZCI6IjlhM2M2MzQzLWY0ZTctNDk0Mi1hZmRjLTg2Zjk4MDk5M2FmOCJ9.2JKk8_K4KPdZytAPtMsh0blQRxBocXJrmRcWV1n7oi0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_name",
+											"value": "Hello",
+											"type": "text"
+										},
+										{
+											"key": "category_icon",
+											"type": "file",
+											"src": "/Users/atharvparkhe/Downloads/123.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/add-categories/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"add-categories",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Categories",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMDA1Njk1LCJpYXQiOjE2NjI4MzI4OTUsImp0aSI6IjUyY2VlMjc2OThlOTQ5ZTdiMDYyNTQ4NGQ0NWY0MWEwIiwidXNlcl9pZCI6IjlhM2M2MzQzLWY0ZTctNDk0Mi1hZmRjLTg2Zjk4MDk5M2FmOCJ9.2JKk8_K4KPdZytAPtMsh0blQRxBocXJrmRcWV1n7oi0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"category_name\": \"hi\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/edit-delete-categories/fdea2de3-f206-4bac-8438-542a8e9d01b5/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"edit-delete-categories",
+										"fdea2de3-f206-4bac-8438-542a8e9d01b5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Categories",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMDA1Njk1LCJpYXQiOjE2NjI4MzI4OTUsImp0aSI6IjUyY2VlMjc2OThlOTQ5ZTdiMDYyNTQ4NGQ0NWY0MWEwIiwidXNlcl9pZCI6IjlhM2M2MzQzLWY0ZTctNDk0Mi1hZmRjLTg2Zjk4MDk5M2FmOCJ9.2JKk8_K4KPdZytAPtMsh0blQRxBocXJrmRcWV1n7oi0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/edit-delete-categories/fdea2de3-f206-4bac-8438-542a8e9d01b5/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"edit-delete-categories",
+										"fdea2de3-f206-4bac-8438-542a8e9d01b5",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notify All Police Officers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMDA1Njk1LCJpYXQiOjE2NjI4MzI4OTUsImp0aSI6IjUyY2VlMjc2OThlOTQ5ZTdiMDYyNTQ4NGQ0NWY0MWEwIiwidXNlcl9pZCI6IjlhM2M2MzQzLWY0ZTctNDk0Mi1hZmRjLTg2Zjk4MDk5M2FmOCJ9.2JKk8_K4KPdZytAPtMsh0blQRxBocXJrmRcWV1n7oi0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sub\": \"This is a test email\",\n    \"body\": \"hello world !!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/notify-all-police/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notify-all-police",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rescent Cases",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMTI4MzU5LCJpYXQiOjE2NjI5NTU1NTksImp0aSI6IjM1N2ViZDg5NzEwZjRkN2VhNDA4MDljN2Y4Zjk1OGYyIiwidXNlcl9pZCI6ImRlMWJmZTI5LTlmNjktNDdhMC05NGJmLTNlYjRmMTdiZDgyOCJ9.PhqfOCNb1DnL2RANO04ylFGuMHfrnmayKIeJad2Vc9Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/rescent-cases/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"rescent-cases",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Police Officer",
+			"item": [
+				{
+					"name": "Account",
+					"item": [
+						{
+							"name": "Police Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"sachinpadwalkar80@gmail.com\",\n    \"password\":\"eqnmbyqz\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/police-login/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"police-login",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Police Forget",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"patharv777@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/police-forgot/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"police-forgot",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Police Reset",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\":\"llltvcwv\",\n    \"pw\":321\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/police-reset/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"police-reset",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register Case",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMDc2MTU0LCJpYXQiOjE2NjI5MDMzNTQsImp0aSI6IjkwODM4MGFjN2E1NDRlYTY5MjlhMjYzNjQyZDViYTNmIiwidXNlcl9pZCI6IjM0YTBiMTZlLTJiNTUtNGNkMi05NDA2LWU1NzY0OGYxYTQ4MSJ9.c8wA5WR08bOD_OQ4TMBEFb2LjAabwXIK9JYy7dlQDwI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "ruth",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "cf7c6900-de0e-4dda-9478-3c86629c3440",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register-case/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register-case",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Person",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjYzMDc2MTU0LCJpYXQiOjE2NjI5MDMzNTQsImp0aSI6IjkwODM4MGFjN2E1NDRlYTY5MjlhMjYzNjQyZDViYTNmIiwidXNlcl9pZCI6IjM0YTBiMTZlLTJiNTUtNGNkMi05NDA2LWU1NzY0OGYxYTQ4MSJ9.c8wA5WR08bOD_OQ4TMBEFb2LjAabwXIK9JYy7dlQDwI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "case",
+									"value": "1036a86b-22a5-4af4-a8ac-232a2171608e",
+									"type": "text"
+								},
+								{
+									"key": "id_card",
+									"type": "file",
+									"src": "/Users/atharvparkhe/Downloads/front.jpeg"
+								},
+								{
+									"key": "img",
+									"type": "file",
+									"src": "/Users/atharvparkhe/Downloads/123.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register-person/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register-person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Case",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/police/search-case/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"police",
+								"search-case",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/categories/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add Police Admins",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/atharvparkhe/Downloads/test1.xls"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/add-police-head/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"add-police-head",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
